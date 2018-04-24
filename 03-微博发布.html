@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .box {
+      width: 600px;
+      margin: 100px auto;
+      border: 1px solid #000;
+      padding: 20px;
+    }
+
+    textarea {
+      width: 450px;
+      height: 160px;
+      outline: none;
+      resize: none;
+    }
+
+    ul {
+      width: 450px;
+      padding-left: 80px;
+    }
+
+    ul li {
+      line-height: 25px;
+      border-bottom: 1px dashed #cccccc;
+    }
+
+    input {
+      float: right;
+    }
+    .fr {
+      float: right;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box" id="weibo">
+  <span>微博发布</span>
+  <textarea name="" id="txt" cols="30" rows="10"></textarea>
+  <button id="btn">发布</button>
+  <ul id="ul">
+
+  </ul>
+</div>
+
+<script>
+  var ul = document.querySelector('#ul');
+  var btn = document.querySelector('#btn');
+  var txt = document.querySelector('#txt');
+  btn.onclick = function () {
+    var content = txt.value.trim();
+    if (content === '') {
+      return;
+    }
+    txt.value = '';
+    var li = document.createElement('li');
+    li.innerText = content;
+    var del = document.createElement('button');
+    del.innerText = '删除';
+    del.className = 'fr';
+    li.appendChild(del);
+    del.onclick = function () {
+      ul.removeChild(this.parentNode);
+    }
+    ul.insertBefore(li, ul.firstElementChild);
+  }
+</script>
+
+</body>
+</html>

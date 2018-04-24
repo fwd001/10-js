@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      font-size: 50px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <span>00</span>天
+    <span>00</span>时
+    <span>00</span>分
+    <span>00</span>秒
+  </div>
+  <script>
+    var day = document.querySelectorAll('.box span')[0];
+    var hour = document.querySelectorAll('.box span')[1];
+    var minute = document.querySelectorAll('.box span')[2];
+    var second = document.querySelectorAll('.box span')[3];
+    var future = new Date('2018-08-16 00:00:00')
+    function setTime() {
+      var date = new Date();
+      var seconds = parseInt((future - date) / 1000);
+      var d = parseInt(seconds / 60 / 60 / 24);
+      var h = parseInt(seconds / 60 / 60 % 24);
+      var m = parseInt(seconds / 60 % 60);
+      var s = parseInt(seconds % 60);
+      // console.log(d, h, m, s);
+
+      day.innerText = d;
+      hour.innerText = addZero(h);
+      minute.innerText = addZero(m);
+      second.innerText = addZero(s);
+    }
+    function addZero(n) {
+      return n < 10 ? '0' + n : n;
+    }
+    setTime();
+    setInterval(setTime, 1000);
+  </script>
+</body>
+
+</html>

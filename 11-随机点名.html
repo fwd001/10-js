@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>随机点名</title>
+  <style>
+    #table {
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #table td {
+      padding: 15px;
+      text-align: center;
+    }
+
+    .bgc {
+      background-color: rgb(135, 212, 213);
+    }
+    .current {
+      background-color: pink;
+    }
+    #start,
+    #end {
+      font-size: 40px;
+      width: 200px;
+      height: 100px;
+      color: rgb(255, 255, 255);
+      background-color: yellowgreen;
+      outline: none;
+    }
+    
+    #start:hover {
+      background-color: rgba(153, 205, 50, 0.701);
+    }
+
+    #end {
+      background-color: rgb(220, 78, 78);
+    }
+
+    #end:hover {
+      background-color: rgba(220, 78, 78, 0.708);
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <button id="start">开始</button>
+  <button id="end">结束</button>
+  <table id="table">
+
+
+  </table>
+
+  <script src="js/jQuery-3.3.1.js"></script>
+  <script>
+    var list = [
+      ["@", "@", "@", "@", "@", "讲师", "@", "徐红影", "马玉婉", "楚宁宁", "周忠琴", "张瑞", "@"],
+      ["王书琴", "徐蕊", "潘鑫杰", "孟腾腾", "田芳", "高萍萍", "@", "刘欢欢", "李日军", "吴娟娟", "刘星", "陈洋", "丁双"],
+      ["刘韵", "杨千丽", "张文昭", "刘诗覃", "庄翠", "邓海霞", "@", "王凤", "陈玲钰", "李珍", "吴程", "张媛媛", "胡豪杰"],
+      ["李辉", "严小伟", "王宽", "张璐", "李威", "石皖军", "@", "苏恩梅", "张瑞雪", "张梦黎", "聂男男", "季大伟", "马金哲"],
+      ["杨凯", "程松伟", "张丽", "谢民成", "张龙", "余佳宁", "@", "程岳飞", "张建山", "汪洋", "侯孔生", "郭海华", "莫龙"],
+      ["张学文", "蒋鲲", "吴凌云 ", "伏文东", "孙玉", "尹健楠", "@", "朱铮", "范景阁", "干滨昭", "陈城", "张怡怡", "施佳尧"],
+      ["黄先伟", "王俊豪", "郭尧峰", "程晨", "郑锦彬", "汪丽", "@", "李廷", "郭栋", "张运", "莫彪", "陈九松", "熊亮"],
+      ["张亚楠", "黄磊", "章华杰", "杨佳", "叶新民", "马黎明", "@", "彭万健", "张志阳", "周为华", "@", "@", "@"],
+    ];
+    // 动态生成界面
+    var table = document.querySelector('#table');
+    var arr = []
+    for (var i = 0; i < list.length; i++) {
+      var tr = document.createElement('tr');
+      table.appendChild(tr);
+      for (var j = 0; j < list[i].length; j++) {
+        var td = document.createElement('td');
+        if (list[i][j] != '@') {
+          td.innerText = list[i][j];
+          td.className = 'bgc'
+          arr.push(td);
+        }
+        tr.appendChild(td);
+      }
+    }
+    var count = 0;
+    var tds = document.querySelectorAll('td');
+    // 开始结束
+    var start = document.querySelector('#start');
+    var end = document.querySelector('#end');
+    var timerId;
+    $('#start').click(function () {
+      if (timerId) {
+        clearInterval(timerId);
+      }
+      timerId = setInterval(random,100)
+    })
+    var record = 0;
+    function random() {
+      arr[record].className = 'bgc';
+      var rdm = getRandom(0, arr.length - 1);
+      
+      arr[rdm].className = 'current';
+      record = rdm;
+    }
+    $('#end').click(function () {
+      clearInterval(timerId);
+    })
+
+
+
+
+
+
+
+    function getRandom(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+    }
+
+  </script>
+</body>
+
+</html>

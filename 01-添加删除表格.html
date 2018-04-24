@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #table {
+      width: 350px;
+      margin: 120px auto 20px;
+      border-collapse: collapse;
+      text-align: center;
+    }
+
+    form {
+      width: 200px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <table id="table" border='1'>
+    <thead>
+      <tr>
+        <th>name</th>
+        <th>age</th>
+        <th>hobby</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>小花</td>
+        <td>12</td>
+        <td>23</td>
+        <td>
+          <a href="deleteEmp?id=1">删除</a>
+        </td>
+      </tr>
+      <tr>
+        <td>小白</td>
+        <td>12</td>
+        <td>23</td>
+        <td>
+          <a href="deleteEmp?id=2">删除</a>
+        </td>
+      </tr>
+      <tr>
+        <td>小吴</td>
+        <td>12</td>
+        <td>23</td>
+        <td>
+          <a href="deleteEmp?id=3">删除</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <form action="">
+    name:&nbsp;
+    <input type="text" name="name" id="name" autocomplete="off">
+    <br> age :&nbsp;&nbsp;&nbsp;
+    <input type="text" name="age" id="age" autocomplete="off">
+    <br> hobby: &nbsp;
+    <input type="text" name="hobby" id="hobby" autocomplete="off">
+    <br>
+    <button id="btn">添加</button>
+  </form>
+
+  <script src="js/jQuery-3.3.1.js"></script>
+  <script>
+    var $table = $('#table>tbody');
+    var $name = $('#name');
+    var $age = $('#age');
+    var $hobby = $('#hobby');
+    $('#btn').click(function () {
+
+      var $nameVal = $name.val().trim();
+      var $ageVal = $age.val().trim();
+      var $hobbyVal = $hobby.val().trim();
+      // 添加tr
+      if ($nameVal == '' || $ageVal == '' || $hobbyVal == '') {
+        return false;
+      } 
+      $('<tr></tr>')
+        .append('<td>' + $nameVal + '</td>')
+        .append('<td>' + $ageVal + '</td>')
+        .append('<td>' + $hobbyVal + '</td>')
+        .append('<td><a href="deleteEmp?id=' + Date.now() + '">删除</a></td>')
+        .appendTo($table)
+        .find('a')
+        .click(removeT)
+        
+      $name.val('')
+      $age.val('')
+      $hobby.val('')
+      return false
+    });
+    $('#table>tbody a').click(removeT)
+    function removeT() {
+      var $tr = $(this).parent().parent();   
+      var $name = $tr.children(':first').text(); 
+      
+      if (confirm('确定删除\"' + $name + '\"??')) {
+        $tr.remove();
+      }
+      return false;
+    }
+
+  </script>
+</body>
+
+</html>

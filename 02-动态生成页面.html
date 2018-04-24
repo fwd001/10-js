@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 600px;
+      height: 500px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btn">按钮</button>
+  <div class="box">
+
+  </div>
+  <script>
+    var arr = [
+      '习近平主持中共中央政治局会议1',
+      '习近平：建设好生态宜居的美丽乡村1',
+      '习近平对中国游客在朝鲜发生重大交通事故作出指示',
+      '习近平的最大爱好  习近平会见俄罗斯外长拉夫罗夫',
+      '习近平会见上合组织外方代表	 成员国国防部长',
+      '人民日报：筑牢国家网络安全屏障  网信新气象',
+      '人民日报：筑牢国家网络安全屏障  网信新气象',
+      '人民日报：筑牢国家网络安全屏障  网信新气象',
+      '人民日报：筑牢国家网络安全屏障  网信新气象',
+    ];
+
+    var btn = document.querySelector('#btn');
+    var box = document.querySelector('.box');
+    btn.onclick = function () {
+      var ul = document.createElement('ul');
+      box.appendChild(ul);
+      for (var i = 0; i < arr.length; i++) {
+        var li = document.createElement('li');
+        li.innerText = arr[i];
+        ul.appendChild(li);
+        if (i % 2 == 0) {
+          li.style.backgroundColor = '#ccc';
+        } else {
+          li.style.backgroundColor = 'yellow  '
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>

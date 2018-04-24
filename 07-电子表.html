@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  .box {
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    width: 300px;
+    margin: 0 auto;
+    background-color: rgb(93, 174, 173);
+    color: rgb(254, 254, 29);
+    font-size: 18px;
+    border: 1px solid #333;
+  }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+
+  <script>
+    var box = document.querySelector('.box');
+    function setTime() {
+      var now = new Date();
+      box.innerText = now.toLocaleString();
+    }
+    setTime();
+    setInterval(setTime,1000);
+  </script>
+</body>
+</html>

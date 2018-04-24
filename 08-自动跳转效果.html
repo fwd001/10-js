@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <a id="link" href="https://www.baidu.com">网页将在3秒后跳转……</a>
+
+  <script>
+    var a = document.querySelector('#link');
+    var time = 3;
+    var timerId = setInterval(function () {
+      time--;
+      a.innerText = '网页将在' + time + '秒后跳转……'
+      if (time == 0) {
+        clearInterval(timerId);
+        location.href = a.href;
+
+      }
+    }, 1000)
+
+
+  </script>
+</body>
+
+</html>
