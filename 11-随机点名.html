@@ -22,9 +22,11 @@
     .bgc {
       background-color: rgb(135, 212, 213);
     }
+
     .current {
       background-color: pink;
     }
+
     #start,
     #end {
       font-size: 40px;
@@ -34,7 +36,7 @@
       background-color: yellowgreen;
       outline: none;
     }
-    
+
     #start:hover {
       background-color: rgba(153, 205, 50, 0.701);
     }
@@ -73,7 +75,10 @@
     ];
     // 动态生成界面
     var table = document.querySelector('#table');
+    var count = 0;
     var arr = []
+    var current = null;
+    var isShow = false;
     for (var i = 0; i < list.length; i++) {
       var tr = document.createElement('tr');
       table.appendChild(tr);
@@ -87,8 +92,17 @@
         tr.appendChild(td);
       }
     }
-    var count = 0;
-    var tds = document.querySelectorAll('td');
+    for (var i = 0; i < arr.length; i++) {
+      
+      arr[i].onmouseover = function (e) {
+        if (e.ctrlKey) {
+          current = this;
+          isShow = true;
+          console.log(current);          
+        }
+      }
+    }
+
     // 开始结束
     var start = document.querySelector('#start');
     var end = document.querySelector('#end');
@@ -97,18 +111,24 @@
       if (timerId) {
         clearInterval(timerId);
       }
-      timerId = setInterval(random,100)
+      timerId = setInterval(random, 100)
     })
-    var record = 0;
     function random() {
-      arr[record].className = 'bgc';
+      arr[count].className = 'bgc';
       var rdm = getRandom(0, arr.length - 1);
-      
+
       arr[rdm].className = 'current';
-      record = rdm;
+      count = rdm;
     }
     $('#end').click(function () {
       clearInterval(timerId);
+      if (isShow) {
+        arr[count].className = 'bgc';
+        current.className = 'current';
+        count = arr.indexOf(current);
+      }
+      current = null;
+      isShow = false;
     })
 
 
@@ -116,7 +136,7 @@
 
 
 
-
+    // 随机点名
     function getRandom(min, max) {
       min = Math.ceil(min);
       max = Math.floor(max);
