@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box1 {
+      width: 200px;
+      height: 200px;
+      background-color: lime;
+      padding-top: 50px;
+    }
+
+    .box2 {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box1">
+    box1……
+    <div class="box2">
+      box2....
+    </div>
+  </div>
+
+  <script src="js/jQuery-3.3.1.js"></script>
+
+  <script>
+    $('.box1').hover(function () {
+      console.log('hover 进入');
+    }, function () {
+      console.log ('hover 出来')
+    })
+      // .mouseover(function () {
+      //   console.log('mouseover 进入');
+      // })
+      // .mouseout(function () {
+      //   console.log('mouseout 出来');  
+      // })
+
+      // .mouseenter(function () {
+      //   console.log('mouseenter 进入');
+      // })
+      // .mouseleave(function () {
+      //   console.log('mouseleave 出来');
+      // })
+
+      // .on('mouseenter', function() {
+      //   console.log('on mouseenter 进入');
+      // })
+      // .on('mouseleave', function() {
+      //   console.log('on mouseleave 出来');
+      // })
+      
+      $('.box1').off('mouseenter');
+
+  </script>
+</body>
+
+</html>
