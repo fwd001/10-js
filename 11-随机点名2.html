@@ -22,12 +22,12 @@
 
     .bgc {
       background-color: rgb(135, 212, 213);
-      transition: background-color 1500ms ease-out
+      transition: background-color 1500ms ease-in;
     }
 
     .current {
       background-color: pink;
-      transition: background-color 100ms ease-out
+      transition: background-color 50ms linear;
     }
 
     #start,
@@ -64,7 +64,7 @@
 
   </table>
 
-  <script src="js/jQuery-3.3.1.js"></script>
+  <!-- <script src="js/jQuery-3.3.1.js"></script> -->
   <script>
     var list = [
       ["@", "@", "@", "@", "@", "讲师", "@", "徐红影", "马玉婉", "楚宁宁", "周忠琴", "张瑞", "@"],
@@ -106,22 +106,25 @@
     var start = document.querySelector('#start');
     var end = document.querySelector('#end');
     var timerId;
-    $('#start').click(function () {
-      if (timerId) {
-        clearInterval(timerId);
-      }
+    var index = 0;
+    document.querySelector('#start').onclick = function () {
+      clearInterval(timerId);
       timerId = setInterval(random, 100)
-    })
+    }
     function random() {
       // arr[count].style.backgroundColor = 'rgb(135, 212, 213)';
-      arr[count].className = 'bgc'
-      var rdm = getRandom(0, arr.length - 1);
-
+      arr[Math.abs(count)].className = 'bgc'
+      // var rdm = getRandom(0, arr.length - 1);
       // arr[rdm].style.backgroundColor = 'pink';
-      arr[rdm].className = 'current'
-      count = rdm;
+      arr[Math.abs(index)].className = 'current'
+      count = index;
+      index++;
+      if (index >= arr.length - 1) {
+        index = -index;
+      }
+      console.log(index);
     }
-    $('#end').click(function () {
+    document.querySelector('#end').onclick = function () {
       clearInterval(timerId);
       if (isShow) {
         // arr[count].style.backgroundColor = 'rgb(135, 212, 213)';
@@ -132,7 +135,7 @@
       }
       current = null;
       isShow = false;
-    })
+    }
 
 
 

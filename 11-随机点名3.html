@@ -27,7 +27,10 @@
 
     .current {
       background-color: pink;
-      transition: background-color 100ms ease-out
+      transition: background-color 50ms ease-out
+    }
+    .small {
+      background-color: rgb(247, 71, 71);
     }
 
     #start,
@@ -90,7 +93,6 @@
         if (list[i][j] != '@') {
           td.innerText = list[i][j];
           td.className = 'bgc'
-          // td.style.backgroundColor = 'rgb(135, 212, 213)'
           arr.push(td);
           td.onmouseover = function (e) {
             if (e.ctrlKey) {
@@ -102,37 +104,43 @@
         tr.appendChild(td);
       }
     }
+    console.log(arr);
+    
+    for( var i = 0; i < arr.length; i++) {
+      if (i == 21 || i == 22 || i == 25 || i == 26 || i == 34 || i == 38 || i == 71 || i == 72 || i == 73 || i == 61) {
+        arr[i].className = 'small'
+      }
+    }
     // 开始结束
     var start = document.querySelector('#start');
     var end = document.querySelector('#end');
     var timerId;
-    $('#start').click(function () {
-      if (timerId) {
-        clearInterval(timerId);
-      }
+    var index = 0;
+    document.querySelector('#start').onclick = function () {
+      clearInterval(timerId);
       timerId = setInterval(random, 100)
-    })
-    function random() {
-      // arr[count].style.backgroundColor = 'rgb(135, 212, 213)';
-      arr[count].className = 'bgc'
-      var rdm = getRandom(0, arr.length - 1);
-
-      // arr[rdm].style.backgroundColor = 'pink';
-      arr[rdm].className = 'current'
-      count = rdm;
     }
-    $('#end').click(function () {
+    function random() {
+      
+      // arr[Math.abs(count)].className = 'bgc'
+      // arr[Math.abs(index)].className = 'current'
+      // count = index;
+      // index++;
+      // if (index >= arr.length - 1) {
+      //   index = -index;
+      // }
+      // console.log(index);
+    }
+    document.querySelector('#end').onclick = function () {
       clearInterval(timerId);
       if (isShow) {
-        // arr[count].style.backgroundColor = 'rgb(135, 212, 213)';
-        // current.style.backgroundColor = 'pink';
         arr[count].className = 'bgc';
         current.className = 'current';
         count = arr.indexOf(current);
       }
       current = null;
       isShow = false;
-    })
+    }
 
 
 
